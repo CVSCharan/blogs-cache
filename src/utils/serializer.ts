@@ -4,13 +4,25 @@
  * @returns JSON string
  */
 export function serialize(value: unknown): string {
-  return JSON.stringify(value, (_, val: unknown) => {
-    // Handle Date objects
-    if (val instanceof Date) {
-      return { __type: 'Date', value: val.toISOString() };
+  // Helper function to recursively convert Dates to wrapped objects
+  const convertDates = (obj: unknown): unknown => {
+    if (obj instanceof Date) {
+      return { __type: 'Date', value: obj.toISOString() };
     }
-    return val;
-  });
+    if (Array.isArray(obj)) {
+      return obj.map(convertDates);
+    }
+    if (obj !== null && typeof obj === 'object') {
+      const result: Record<string, unknown> = {};
+      for (const [key, val] of Object.entries(obj)) {
+        result[key] = convertDates(val);
+      }
+      return result;
+    }
+    return obj;
+  };
+
+  return JSON.stringify(convertDates(value));
 }
 
 /**
