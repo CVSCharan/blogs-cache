@@ -72,11 +72,7 @@ describe('Serializer', () => {
     });
 
     it('should handle arrays', () => {
-      const json = JSON.stringify([
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-      ]);
+      const json = JSON.stringify([{ id: 1 }, { id: 2 }, { id: 3 }]);
       const result = deserialize<Array<{ id: number }>>(json);
       expect(result).toHaveLength(3);
       expect(result[0].id).toBe(1);

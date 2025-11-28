@@ -8,7 +8,7 @@ import type { CacheKeyComponents } from '../types';
  */
 export function buildKey(components: CacheKeyComponents): string {
   const { service, resource, id, field } = components;
-  
+
   // Validate components
   if (!service || !resource || !id) {
     throw new Error('service, resource, and id are required for cache key');
@@ -30,7 +30,7 @@ export function buildKey(components: CacheKeyComponents): string {
  */
 export function parseKey(key: string): CacheKeyComponents {
   const parts = key.split(':');
-  
+
   if (parts.length < 3) {
     throw new Error('Invalid cache key format');
   }

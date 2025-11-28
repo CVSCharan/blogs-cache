@@ -75,7 +75,10 @@ describe('SessionCache', () => {
   describe('refresh', () => {
     it('should refresh session TTL', async () => {
       await sessionCache.refresh('session-123');
-      expect(mockCache.expire).toHaveBeenCalledWith('session:session-123', 86400);
+      expect(mockCache.expire).toHaveBeenCalledWith(
+        'session:session-123',
+        86400
+      );
     });
   });
 

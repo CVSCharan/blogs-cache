@@ -18,14 +18,22 @@ describe('ApiCache', () => {
       const post = { id: 'post-123', title: 'Test Post' };
 
       await apiCache.cachePost('post-123', post);
-      expect(mockCache.set).toHaveBeenCalledWith('api:post:post-123', post, 3600);
+      expect(mockCache.set).toHaveBeenCalledWith(
+        'api:post:post-123',
+        post,
+        3600
+      );
     });
 
     it('should cache post with custom TTL', async () => {
       const post = { id: 'post-123', title: 'Test Post' };
 
       await apiCache.cachePost('post-123', post, 7200);
-      expect(mockCache.set).toHaveBeenCalledWith('api:post:post-123', post, 7200);
+      expect(mockCache.set).toHaveBeenCalledWith(
+        'api:post:post-123',
+        post,
+        7200
+      );
     });
 
     it('should get cached post', async () => {
@@ -47,7 +55,9 @@ describe('ApiCache', () => {
 
       const result = await apiCache.invalidateAuthorPosts('author-123');
       expect(result).toBe(5);
-      expect(mockCache.delPattern).toHaveBeenCalledWith('api:author:author-123:*');
+      expect(mockCache.delPattern).toHaveBeenCalledWith(
+        'api:author:author-123:*'
+      );
     });
   });
 
@@ -56,7 +66,11 @@ describe('ApiCache', () => {
       const list = [{ id: '1' }, { id: '2' }];
 
       await apiCache.cacheList('trending', list);
-      expect(mockCache.set).toHaveBeenCalledWith('api:list:trending', list, 300);
+      expect(mockCache.set).toHaveBeenCalledWith(
+        'api:list:trending',
+        list,
+        300
+      );
     });
 
     it('should get cached list', async () => {
