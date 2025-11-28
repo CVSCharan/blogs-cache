@@ -11,7 +11,7 @@ import {
  * Playground script for development
  * Run with: npm run dev
  */
-async function main() {
+async function main(): Promise<void> {
   try {
     console.log('🚀 Starting blogs-cache playground...');
 
@@ -68,4 +68,4 @@ async function main() {
   }
 }
 
-main();
+void main();

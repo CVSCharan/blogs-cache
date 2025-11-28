@@ -40,7 +40,7 @@ export class ApiCache {
    * @param postId Post identifier
    * @returns Post data or null if not cached
    */
-  async getPost(postId: string): Promise<unknown | null> {
+  async getPost(postId: string): Promise<unknown> {
     const key = `${API_PREFIX}:post:${postId}`;
     return await cache.get(key);
   }
@@ -117,7 +117,7 @@ export class ApiCache {
    * @param categoryId Category identifier
    * @returns Category data or null if not cached
    */
-  async getCategory(categoryId: string): Promise<unknown | null> {
+  async getCategory(categoryId: string): Promise<unknown> {
     const key = `${API_PREFIX}:category:${categoryId}`;
     return await cache.get(key);
   }
@@ -142,7 +142,7 @@ export class ApiCache {
    * @param userId User identifier
    * @returns Profile data or null if not cached
    */
-  async getProfile(userId: string): Promise<unknown | null> {
+  async getProfile(userId: string): Promise<unknown> {
     const key = `${API_PREFIX}:user:${userId}:profile`;
     return await cache.get(key);
   }
